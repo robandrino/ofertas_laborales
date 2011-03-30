@@ -1,0 +1,14 @@
+th { 
+color: #fff;
+background-color: #66d;
+}
+td, th{
+	Padding: 5px; 
+	Font-family: Verdana,Arial,sans-serif;
+}
+.field, div, #job_title {
+	background-color: #ccc;
+	margin: 5px;
+	padding: 5px;
+	color: #000000; 
+}

@@ -1,0 +1,49 @@
+<h1>Listing jobs</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Company</th>
+    <th>Email</th>
+    <th>Salary</th>
+ 
+    
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @jobs.each do |job| %>
+  <tr>
+    <td><%= job.title %></td>
+    <td><%= job.company %></td>
+    <td><%= link_to 'Show', job %></td>
+
+	<td id=<%= link_to job.title, job_path(job.id),:class => "links" %></td>
+    
+  </tr>
+<% end %>
+</table>
+<div id="caja"></div>
+<br />
+
+<%= link_to 'New Job', new_job_path %>
+
+<div id="caja"></div>
+
+<script>
+jQuery(".links").click(function(){
+var link = jQuery(this).attr('href');
+jQuery.ajax({
+cache:false,
+url: link,
+success :function(data){
+jQuery('#caja').html(data);
+},
+error: function(){
+alert('ocurrio un error' );
+}
+
+});
+return false;
+});
+</script>

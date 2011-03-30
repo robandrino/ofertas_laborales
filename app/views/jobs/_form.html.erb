@@ -1,0 +1,71 @@
+<%= form_for(@job) do |f| %>
+  <% if @job.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@job.errors.count, "error") %> prohibited this job from being saved:</h2>
+
+      <ul>
+      <% @job.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :company %><br />
+    <%= f.text_field :company %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :salary %><br />
+    <%= f.text_field :salary %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= stylesheet_link_tag "jobs.css" %>
+<script type="text/javascript">
+	function job_validate_field(element, min_length, max_length){
+		var value = element.val();
+		if (value.length < min_length){
+			element.css("border-color","red");
+			alert("El campo ingresado es demasiado corto");
+} else if ( value.length > max_length){
+			element.css("border-color","red");
+			alert("El campo ingresado es demasiado largo");
+}
+}
+
+	jQuery("#job_title").blur(function(){
+	job_validate_field(jQuery(this), 6, 30));
+});
+
+function job_validate_email(element, min_length, max_length){
+var value = element.val();
+var er_email = /^(.+\@.+\..+)$/;
+if(!er_email.test(value)){
+element.css("border-color","red");
+element.css("border-style","solid");
+alert("El campo de correo electronico es invalido");
+}
+
+jQuery("#job_email").blur(function(){
+job_validate_email(jQuery(this), 6, 30);});
+
+
+
+</script>
+
